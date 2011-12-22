@@ -293,7 +293,22 @@ int dAcc_map_len(dAcc_map * map) {
  */
 int dAcc_map_count(dAcc_map * map, void * value) {
 
-    return 0;
+    if(map == NULL)
+        return 0;
+    
+    dAcc_map *temp = map;
+    int count = 0;
+    
+    while(temp != NULL) {
+        
+        if(temp->value == value)
+            count++;
+        
+        temp = temp->next;
+    
+    }
+    
+    return count;
 
 }
 
