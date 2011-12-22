@@ -2,7 +2,8 @@
 dAcc
 =========
 
-*dAcc* is a C library for the deviantART chatrooms. This project is an
+**dAcc** is a **C library** for the deviantART chatrooms. The full name of the
+project is "**d**eviant**A**RT **c**hat **c** library". This project is an
 initiative by @otters.
 
 ------------------
