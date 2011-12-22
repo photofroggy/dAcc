@@ -1,0 +1,16 @@
+CC=gcc
+CFLAGS=-c -Wall
+
+all: test_map
+
+test_map: test_map.o dAcc/map.o
+	$(CC) test_map.o dAcc/map.o -o test_map
+
+test_map.o: test_map.c
+	$(CC) $(CFLAGS) test_map.c
+
+map.o: dAcc/map.c
+	$(CC) $(CFLAGS) dAcc/map.c
+
+clean:
+	rm test_map *.o dAcc/*.o

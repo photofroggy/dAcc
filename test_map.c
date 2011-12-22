@@ -1,0 +1,36 @@
+/**
+ * @file test_map.c
+ * @author Henry Rapley <photofroggy>
+ * @version 1
+ *
+ * @section DESCRIPTION
+ *
+ * This program is simply to make sure my stuff works as I make it. Also
+ * doubles as a demonstration of how maps can be used.
+ */
+
+#include <stdio.h>
+#include <string.h>
+#include "dAcc/map.h"
+
+int main(void) {
+
+    dAcc_map * map;
+    
+    // test basic creation and inspection.
+    map = dAcc_map_new("foo", "bar");
+    dAcc_map_inspect(map);
+    printf("map size: %i\n", dAcc_map_len(map));
+    
+    printf("------------\n");
+    
+    // Adding k-v pairs.
+    dAcc_map_set(map, "lol", "wot");
+    dAcc_map_inspect(map);
+    
+    return 0;
+
+}
+
+
+// EOF
