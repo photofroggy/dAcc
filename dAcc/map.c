@@ -116,10 +116,42 @@ int dAcc_map_append(dAcc_map * head, dAcc_map * map) {
     return 0;
     
 }
-/* / Remove item
-int dAcc_map_remove(dAcc_map * map, char key[32]);
-/* / Modify
-int dAcc_map_set(dAcc_map * map, char key[32], void * value);
+/**
+ * Remove an item from a map based on key.
+ *
+ * @param map - The map to remove the entry from.
+ * @param key - The key of the map entry to remove.
+ * @return 0 - Success.
+ * @return 1 - Failure.
+ */
+int dAcc_map_remove(dAcc_map * map, char key[32]) {
+    
+    if(key[0] == '\0')
+        return 1;
+    
+    dAcc_map *temp = map;
+    
+    if(!strcmp(temp->key, key)) {
+        *map = *(temp->next);
+        return 0;
+    }
+    
+    while(temp->next != NULL) {
+    
+        if(!strcmp(temp->next->key, key))
+            break;
+        
+        temp = temp->next;
+    
+    }
+    
+    if(temp->next == NULL)
+        return 1;
+    
+    temp->next = temp->next->next;
+    return 0;
+
+}
 
 
 /*****************************************************************************\

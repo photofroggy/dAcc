@@ -43,6 +43,17 @@ int main(void) {
     
     printf("------------\n");
     
+    // Deleting
+    dAcc_map_remove(map, "dick");
+    dAcc_map_inspect(map);
+    dAcc_map_remove(map, "foo");
+    dAcc_map_inspect(map);
+    dAcc_map_set(map, "foo", "bar");
+    dAcc_map_inspect(map);
+    dAcc_map_remove(map, "foo");
+    dAcc_map_inspect(map);
+    dAcc_map_set(map, "foo", "bar");
+    
     return 0;
 
 }
