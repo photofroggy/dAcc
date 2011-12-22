@@ -39,32 +39,18 @@ typedef struct _dAcc_map {
 dAcc_map* dAcc_map_empty();
 dAcc_map* dAcc_map_new(char key[32], void * value);
 
-/* Map manipulation
- * These functions are concerned with manipulating maps
- * with regards to adding, removing and changing items in
- * map. These functions return an integer, 1 for failure, 0
- * for success.
- */
-/// Add item: k-v, map
-//int dAcc_map_add(dAcc_map * map, char key[32], void * value);
+// Map manipulation
 int dAcc_map_append(dAcc_map * head, dAcc_map * map);
-/// Remove item
 int dAcc_map_remove(dAcc_map * map, char key[32]);
-/// Modify
 int dAcc_map_set(dAcc_map * map, char key[32], void * value);
 
-// Map searching
-/// Get value
+// Gets
 void* dAcc_map_get(dAcc_map * map, char key[32]);
-/// Get value as string
 char* dAcc_map_gets(dAcc_map * map, char key[32]);
-/// Get map
 dAcc_map* dAcc_map_getm(dAcc_map * map, char key[32]);
 
 // Map info
-/// view all values
 void dAcc_map_inspect(dAcc_map * map);
-/// number of entries/occurances
 int dAcc_map_len(dAcc_map * map);
 int dAcc_map_count(dAcc_map * map, void * value);
 

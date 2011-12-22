@@ -183,14 +183,14 @@ void* dAcc_map_get(dAcc_map * map, char key[32]) {
  * 
  * @param map - The map to search through.
  * @param key - The key to search for.
- * @return value as a string.
+ * @return value as a string. Returns NULL on failure.
  */
 char* dAcc_map_gets(dAcc_map * map, char key[32]) {
 
     void *value = dAcc_map_get(map, key);
     
     if(value == NULL)
-        return "\0";
+        return NULL;
     
     return (char*) value;
 
