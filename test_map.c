@@ -28,6 +28,21 @@ int main(void) {
     dAcc_map_set(map, "lol", "wot");
     dAcc_map_inspect(map);
     
+    printf("------------\n");
+    
+    // Overriding.
+    dAcc_map_set(map, "lol", "dick");
+    dAcc_map_inspect(map);
+    
+    printf("------------\n");
+    
+    // Getting
+    printf(">> lol = %s\n", dAcc_map_gets(map, "lol"));
+    // Should be empty string.
+    printf(">> t = %s\n", dAcc_map_gets(map, "t"));
+    
+    printf("------------\n");
+    
     return 0;
 
 }

@@ -128,10 +128,41 @@ int dAcc_map_set(dAcc_map * map, char key[32], void * value);
  * items based on a given key.
 \*****************************************************************************/
 
-/* / Get value
-void* dAcc_map_get(dAcc_map * map, char key[32]);
-/* / Get value as string
-char* dAcc_map_gets(dAcc_map * map, char key[32]);
+/**
+ * Get the value of the map entry associated with the given key.
+ * 
+ * @param map - The map to search through.
+ * @param key - The key to search for.
+ * @return pointer to value. Returns NULL on failure.
+ */
+void* dAcc_map_get(dAcc_map * map, char key[32]) {
+
+    dAcc_map *find = dAcc_map_getm(map, key);
+    
+    if(find == NULL)
+        return NULL;
+    
+    return find->value;
+
+}
+
+/**
+ * Get the value of the map entry associated with the given key.
+ * 
+ * @param map - The map to search through.
+ * @param key - The key to search for.
+ * @return value as a string.
+ */
+char* dAcc_map_gets(dAcc_map * map, char key[32]) {
+
+    void *value = dAcc_map_get(map, key);
+    
+    if(value == NULL)
+        return "\0";
+    
+    return (char*) value;
+
+}
 
 /**
  * Get the map entry associated with the given key.
@@ -218,6 +249,19 @@ int dAcc_map_len(dAcc_map * map) {
     }
     
     return count;
+
+}
+
+/**
+ * Count the number of occurances of the given value in the map.
+ *
+ * @param map - The map to search through.
+ * @param value - The value to search for.
+ * @return int count.
+ */
+int dAcc_map_count(dAcc_map * map, void * value) {
+
+    return 0;
 
 }
 
