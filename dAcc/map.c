@@ -147,15 +147,16 @@ dAcc_map* dAcc_map_getm(dAcc_map * map, char key[32]) {
 
     dAcc_map *temp = map;
     
-    while(1) {
+    while(temp != NULL) {
     
         if(!strcmp(temp->key, key))
             return temp;
         
-        if(temp->next == NULL)
-            return NULL;
+        temp = temp->next;
     
     }
+    
+    return NULL;
     
 }
 
@@ -170,20 +171,17 @@ dAcc_map* dAcc_map_getm(dAcc_map * map, char key[32]) {
  * @param map - The map to display all entries for.
  */
 void dAcc_map_inspect(dAcc_map * map) {
+    
+    if(map == NULL)
+        return;
 
     dAcc_map * temp = map;
     
-    if(temp == NULL)
-        return;
-    
     printf(">> map data:\n");
     
-    while(1) {
+    while(temp != NULL) {
         
         printf(">>> %s = %s\n", temp->key, (char*) (temp->value));
-        
-        if(temp->next == NULL)
-            break;
         
         temp = temp->next;
     
