@@ -20,7 +20,19 @@ extern "C"
 #include <string.h>
 
 // dAcc_map data type.
-typedef struct _dAcc_map dAcc_map;
+typedef struct dAcc_map dAcc_map;
+
+/**
+ * Map data structure.
+ * This data structure represents an entry in a map of key-value pairs. The
+ * structure has a pointer to the next entry in the map, so a map entry object
+ * also represents an entire map. Use the type `dAcc_map` for this.
+ */
+struct dAcc_map {
+    char key[32];    //!< The key of the map entry.
+    void *value;     //!< The value of the map entry.
+    dAcc_map * next; //!< The next entry in the map.
+};
 
 // Map creation
 dAcc_map* dAcc_map_empty();
