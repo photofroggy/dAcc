@@ -19,16 +19,7 @@ extern "C"
 #include <stdlib.h>
 #include <string.h>
 
-/* type: dAcc_map
- * members:
- *  - key (string)
- *  - value (pointer)
- *  - next (dAcc_map)
- *
- * This data type is supposed to be similar to a linked list
- * and hash map. We may be using these for packet arguments
- * later on in the lib.
- */
+// dAcc_map data type.
 typedef struct _dAcc_map dAcc_map;
 
 // Map creation
