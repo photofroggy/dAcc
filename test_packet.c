@@ -17,12 +17,14 @@
 int main(void) {
     
     dAcc_packet * pkt;
-    printf("hey\n");
+    
     pkt = dAcc_packet_parse("foo bar\nlol=wot\nfuck=shit\n\nbloody fucking body\0");
-    printf("sup\n");
+    
     printf(">> cmd: %s; param: %s;\n", pkt->command, pkt->param);
+    
     dAcc_map_inspect(pkt->args);
-    printf(">> body:\n%s\n", pkt->body);
+    
+    printf(">> body:%s\n", pkt->body);
     
     return 0;
 

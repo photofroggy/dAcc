@@ -22,7 +22,7 @@ dAcc_packet* dAcc_packet_empty() {
     dAcc_packet *pkt = malloc(sizeof(dAcc_packet));
     pkt->command[0] = '\0';
     pkt->param[0] = '\0';
-    pkt->args = dAcc_map_empty();
+    pkt->args = NULL;
     pkt->body[0] = '\0';
     pkt->subpacket = NULL;
     return pkt;
@@ -31,6 +31,9 @@ dAcc_packet* dAcc_packet_empty() {
 
 /**
  * Parses a dAmn packet and returns it as a dAcc_packet object.
+ *
+ * @param packet - A string formatted as a dAmn packet.
+ * @return packet object. Returns NULL on failure.
  */
 dAcc_packet* dAcc_packet_parse(char* packet) {
     
@@ -56,10 +59,10 @@ dAcc_packet* dAcc_packet_parse(char* packet) {
         strcpy(pkt->body, sep + 2);
     }
     
-    
     // Process each line under the command and param in the header.
     // Use a do...while to make sure single-line headers are processed.
     do {
+        
         // Find the end of the line.
         sep = strchr(head, '\n');
         
@@ -88,7 +91,11 @@ dAcc_packet* dAcc_packet_parse(char* packet) {
                 strcpy(pkt->param, (char*) targ->value);
             } else {
                 // Add the arg if parsed successfully.
-                dAcc_map_set(pkt->args, targ->key, targ->value);
+                if(pkt->args == NULL) {
+                    pkt->args = targ;
+                } else {
+                    dAcc_map_set(pkt->args, targ->key, targ->value);
+                }
             }
         } else if(item == 0) {
             strcpy(pkt->command, line);
@@ -105,7 +112,7 @@ dAcc_packet* dAcc_packet_parse(char* packet) {
  * Parse an argument line.
  */
 dAcc_map* dAcc_packet_parsearg(char * line, int separator) {
-
+    
     char * spos = strchr(line, separator);
     
     if(spos == NULL) {
@@ -114,10 +121,13 @@ dAcc_map* dAcc_packet_parsearg(char * line, int separator) {
     
     dAcc_map *arg = dAcc_map_empty();
     strncpy(arg->key, line, spos - line);
-    strcpy(arg->value, spos + 1);
-    
     arg->key[spos - line] = '\0';
-    ((char*)arg->value)[strlen(spos + 1)] = '\0';
+    
+    char * value = malloc(sizeof(char*));
+    strcpy(value, spos + 1);
+    value[strlen(spos + 1)] = '\0';
+    dAcc_map_set(arg, arg->key, value);
+    
     
     return arg;
 }
