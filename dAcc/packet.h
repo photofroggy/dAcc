@@ -38,6 +38,7 @@ typedef struct dAcc_packet dAcc_packet;
  * the packet may also contain a sub packet, following the same format.
  */
 struct dAcc_packet {
+    char event[12];          //!< Packet event.
     char command[100] ;      //!< Packet command.
     char param[100];         //!< Packet parameter.
     dAcc_map * args;         //!< Packet arguments.
@@ -47,9 +48,13 @@ struct dAcc_packet {
 
 dAcc_packet* dAcc_packet_empty();
 
+dAcc_packet* dAcc_packet_create(char * packet);
+
 dAcc_packet* dAcc_packet_parse(char * packet);
 
 dAcc_map* dAcc_packet_parsearg(char * line, int separator);
+
+char* dAcc_packet_event(dAcc_packet * pkt);
 
 
 #ifdef __cplusplus

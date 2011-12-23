@@ -237,7 +237,7 @@ void dAcc_map_inspect(dAcc_map * map) {
     
     if(map == NULL)
         return;
-
+    
     dAcc_map * temp = map;
     
     printf(">> map data:\n");

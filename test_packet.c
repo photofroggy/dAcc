@@ -18,13 +18,15 @@ int main(void) {
     
     dAcc_packet * pkt;
     
-    pkt = dAcc_packet_parse("foo bar\nlol=wot\nfuck=shit\n\nbloody fucking body\0");
-    
-    printf(">> cmd: %s; param: %s;\n", pkt->command, pkt->param);
-    
+    pkt = dAcc_packet_create("recv chat:Botdom\n\nmsg main\nfrom=photofroggy\n\nHere's a message for ya!\0");
     dAcc_map_inspect(pkt->args);
     
-    printf(">> body:%s\n", pkt->body);
+    printf(">> EVENT: %s;\n", pkt->event);
+    
+    printf("[#%s] <%s> %s\n",
+        pkt->param + 5,
+        dAcc_map_gets(pkt->subpacket->args, "from"),
+        pkt->subpacket->body);
     
     return 0;
 
