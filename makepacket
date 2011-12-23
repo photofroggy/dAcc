@@ -1,0 +1,19 @@
+CC=gcc
+CFLAGS=-c -Wall
+
+all: test_packet
+
+test_packet: test_packet.o dAcc/map.o dAcc/packet.o
+	$(CC) test_packet.o dAcc/map.o dAcc/packet.o -o test_packet
+
+test_packet.o: test_packet.c
+	$(CC) $(CFLAGS) test_packet.c
+
+map.o: dAcc/map.c
+	$(CC) $(CFLAGS) dAcc/map.c
+
+packet.o: dAcc/packet.c
+	$(CC) $(CFLAGS) dAcc/packet.c
+
+clean:
+	rm test_packet *.o dAcc/*.o
