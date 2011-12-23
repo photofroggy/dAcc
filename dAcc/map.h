@@ -29,11 +29,7 @@ extern "C"
  * and hash map. We may be using these for packet arguments
  * later on in the lib.
  */
-typedef struct _dAcc_map {
-    char key[32];
-    void *value;
-    struct _dAcc_map * next;
-} dAcc_map;
+typedef struct _dAcc_map dAcc_map;
 
 // Map creation
 dAcc_map* dAcc_map_empty();

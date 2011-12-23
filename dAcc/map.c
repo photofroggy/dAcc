@@ -11,6 +11,12 @@
 #include <string.h>
 #include "map.h"
 
+struct _dAcc_map {
+    char key[32];
+    void *value;
+    dAcc_map * next;
+};
+
 
 /*****************************************************************************\
  * CREATION
