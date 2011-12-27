@@ -19,7 +19,11 @@ int main(void) {
     dAcc_packet * pkt;
     
     pkt = dAcc_packet_create("recv chat:Botdom\n\nmsg main\nfrom=photofroggy\n\nHere's a message for ya!\0");
-    dAcc_map_inspect(pkt->args);
+    printf("n\n");
+    if(pkt->subpacket->args == NULL) {
+        printf("failed for some reason\n");
+        return 1;
+    }
     
     printf(">> EVENT: %s;\n", pkt->event);
     

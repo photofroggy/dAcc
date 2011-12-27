@@ -46,7 +46,9 @@ dAcc_packet* dAcc_packet_create(char* packet) {
     if(pkt == NULL)
         return NULL;
     
+    printf("parsed\n");
     char* event = dAcc_packet_event(pkt);
+    printf("evented\n");
     strcpy(pkt->event, event);
     
     return pkt;
@@ -69,7 +71,7 @@ dAcc_packet* dAcc_packet_parse(char* packet) {
     char head[8092];
     char line[100];
     int item = 0;
-    dAcc_map * targ;
+    dAcc_map * targ = malloc(sizeof(dAcc_map));
     
     /* If there is a packet body, we may as well handle that first, as this
      * parser is not interested in subpackets (yet). So, we look for two line
@@ -117,11 +119,12 @@ dAcc_packet* dAcc_packet_parse(char* packet) {
             } else {
                 // Add the arg if parsed successfully.
                 if(pkt->args == NULL) {
+                    //printf("before\n");
                     pkt->args = targ;
+                    //printf("after\n");
                 } else {
-                    dAcc_map_set(pkt->args, targ->key, targ->value);
+                    dAcc_map_set(pkt->args, targ->key, (void*) targ->value);
                 }
-                dAcc_map_inspect(pkt->args);
             }
         } else if(item == 0) {
             strcpy(pkt->command, line);
@@ -160,7 +163,7 @@ dAcc_map* dAcc_packet_parsearg(char * line, int separator) {
     char * value = malloc(sizeof(char*));
     strcpy(value, spos + 1);
     value[strlen(spos + 1)] = '\0';
-    dAcc_map_set(arg, arg->key, value);
+    dAcc_map_set(arg, arg->key, (void*) value);
     
     return arg;
 }
