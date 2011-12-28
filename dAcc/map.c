@@ -190,7 +190,7 @@ char* dAcc_map_gets(dAcc_map * map, char key[32]) {
     void *value = dAcc_map_get(map, key);
     
     if(value == NULL)
-        return NULL;
+        return "\0";
     
     return (char*) value;
 

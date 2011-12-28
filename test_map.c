@@ -13,7 +13,7 @@
 #include <string.h>
 #include "dAcc/map.h"
 
-int main(void) {
+int main(int argc, const char* argv[]) {
 
     dAcc_map * map;
     

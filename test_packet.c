@@ -14,12 +14,12 @@
 #include "dAcc/map.h"
 #include "dAcc/packet.h"
 
-int main(void) {
+int main(int argc, const char* argv[]) {
     
     dAcc_packet * pkt;
     
     pkt = dAcc_packet_create("recv chat:Botdom\n\nmsg main\nfrom=photofroggy\n\nHere's a message for ya!\0");
-    printf("n\n");
+    //printf("n\n");
     if(pkt->subpacket->args == NULL) {
         printf("failed for some reason\n");
         return 1;

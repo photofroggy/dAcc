@@ -46,9 +46,9 @@ dAcc_packet* dAcc_packet_create(char* packet) {
     if(pkt == NULL)
         return NULL;
     
-    printf("parsed\n");
+    //printf("parsed\n");
     char* event = dAcc_packet_event(pkt);
-    printf("evented\n");
+    //printf("evented\n");
     strcpy(pkt->event, event);
     
     return pkt;
@@ -68,7 +68,7 @@ dAcc_packet* dAcc_packet_parse(char* packet) {
     
     dAcc_packet *pkt = dAcc_packet_empty();
     char * sep = strstr(packet, "\n\n");
-    char head[8092];
+    char head[4000];
     char line[100];
     int item = 0;
     dAcc_map * targ = malloc(sizeof(dAcc_map));
