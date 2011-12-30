@@ -82,6 +82,7 @@ dAcc_packet* dAcc_packet_parse(char* packet) {
         strcpy(head, packet);
     } else {
         strncpy(head, packet, sep - packet);
+        head[sep - packet] = '\0';
         strcpy(pkt->body, sep + 2);
     }
     
